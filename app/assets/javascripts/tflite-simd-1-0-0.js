@@ -454,13 +454,17 @@ var createTwilioTFLiteSIMDModule = (function () {
           typeof fetch === "function"
         ) {
           return fetch(wasmBinaryFile, { credentials: "same-origin" }).then(
-            async function (response) {
-              const resp = await fetch(response.url);
-              const buffer = await resp.arrayBuffer();
-              const result = WebAssembly.instantiate(buffer, info);
-              return result
+            function (response) {
+              var result = WebAssembly.instantiateStreaming(response, info);
+              return result.then(receiveInstantiatedSource, function (reason) {
+                err("wasm streaming compile failed: " + reason);
+                err("falling back to ArrayBuffer instantiation");
+                return instantiateArrayBuffer(receiveInstantiatedSource);
+              });
             }
           );
+        } else {
+          return instantiateArrayBuffer(receiveInstantiatedSource);
         }
       }
       if (Module["instantiateWasm"]) {

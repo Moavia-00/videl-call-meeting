@@ -1,4 +1,5 @@
 'use strict';
+
 const Video = Twilio.Video;
 const { GaussianBlurBackgroundProcessor, VirtualBackgroundProcessor, isSupported, Pipeline } = Twilio.VideoProcessors;
 const bootstrap = window.bootstrap;
@@ -76,18 +77,17 @@ const handleButtonClick = async bg => {
       pipeline,
       debounce,
     });
-    // await virtualBackgroundProcessor.loadModel();
+    await virtualBackgroundProcessor.loadModel();
   }
   if (bg === 'none') {
     setProcessor(null, videoTrack);
-  } else if ('blur' === 'blur') {
+  } else if (bg === 'blur') {
     setProcessor(gaussianBlurProcessor, videoTrack);
   } else {
     virtualBackgroundProcessor.backgroundImage = await loadImage(bg);
     setProcessor(virtualBackgroundProcessor, videoTrack);
   }
 };
-
 
 document.querySelectorAll('.img-btn').forEach(btn => btn.onclick = () => handleButtonClick(btn.id));
 
