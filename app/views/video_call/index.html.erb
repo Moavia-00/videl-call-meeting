@@ -1,0 +1,32 @@
+<div class="container-fluid">
+        <div class="row thin-gutters align">
+          <div class="col-sm-8">
+            <div class="card video-container">
+              <div class="card-block">
+                <h4 class="card-title">Local Video</h4>
+                <video id="video-input" autoplay></video>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4 left-form">
+            <div id="none" class="img-btn" style="background-image: url('none.png');">none</div>
+            <div id="blur" class="img-btn" style="background-image: url('blur.png');">Blur</div>
+            <div id="living_room" class="img-btn" style="background-image: url('backgrounds/living_room.jpg');">Living Room</div>
+            <div id="office" class="img-btn" style="background-image: url('backgrounds/office.jpg');">Office</div>
+            <div id="vacation" class="img-btn" style="background-image: url('backgrounds/vacation.jpg');">vacation</div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="errorModal" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="errorModalLabel">Error</h5>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+          </div>
+        </div>
+      </div>
+    <pre id="stats"></pre>
